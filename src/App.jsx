@@ -6,6 +6,11 @@ import Header from "./components/Header";
 import "./App.css";
 import { WatchListContextProvider } from "./context/watchListContext";
 
+// Re-Upload: CryptoCurrency Tracker: React + chart.js w/ hooks
+
+// https://youtu.be/3m-3qnEXIUk
+
+
 const App = () => {
   return (
     <div className="container">
@@ -13,7 +18,6 @@ const App = () => {
         <BrowserRouter>
           <Header />
           <Route exact path="/" component={CoinSummaryPage} />
-          <Route path="/coins/:id" component={CoinDetailPage} />
         </BrowserRouter>
       </WatchListContextProvider>
     </div>
