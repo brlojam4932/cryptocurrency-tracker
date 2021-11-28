@@ -35,7 +35,7 @@ function CoinList() {
 
   const renderCoins = () => {
     if (isLoading) {
-      return <div>Loading...</div>
+      return <h1>Loading...</h1>
     }
 
     return (

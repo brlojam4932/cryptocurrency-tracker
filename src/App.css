@@ -6,7 +6,9 @@
 }
 
 body {
-  background-color: #263238;
+  background-color: #060707;
+  color: rgb(180, 190, 197);
+  
 }
 
 ul {
@@ -38,4 +40,8 @@ ul {
 
 .coin:hover .delete-icon {
   display: block;
+}
+
+.chart {
+  background-color: rgb(26, 29, 29);
 }
