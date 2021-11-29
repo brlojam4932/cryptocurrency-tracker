@@ -7,7 +7,7 @@
 
 body {
   background-color: #060707;
-  color: rgb(180, 190, 197);
+  color: rgb(155, 168, 177);
   
 }
 
@@ -20,16 +20,18 @@ ul {
 }
 
 .coinlist-item {
+  background-color: black;
   display: flex;
 }
 
 .coinsummary {
-  border-color: white !important;
+  border-color: rgb(67, 65, 65) !important;
   border-style: outset !important;
 }
 
 .coin-data-category {
   font-size: 10px;
+
 }
 
 .delete-icon {
