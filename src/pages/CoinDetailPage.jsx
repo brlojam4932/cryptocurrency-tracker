@@ -5,12 +5,11 @@ import CoinData from "../components/CoinData";
 import coinGecko from "../apis/coinGecko";
 
 const CoinDetailPage = () => {
-  const { id } = useParams() // with use Params, we get back the id
+  const { id } = useParams(); // with use Params, we get back the id
   //console.log("id: " + id);
   const [coinData, setCoinData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  // take data from arrays into an object
   const formatData = (data) => {
     return data.map((el) => {
       return {
@@ -20,50 +19,58 @@ const CoinDetailPage = () => {
     });
   };
 
-
+  // take data from arrays into an object
+  // destructure values from results into a const [values, values, values, etc] =
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      //deconstruct values
-      const [day, week, year, detail] = await Promise.all([await coinGecko.get(`/coins/${id}/market_chart/`, {
-        params: {
-          vs_currency: "usd",
-          days: "1",
-        },
-      }),
-      coinGecko.get(`/coins/${id}/market_chart/`, {
-        params: {
-          vs_currency: "usd",
-          days: "7",
-        },
-      }),
-      coinGecko.get(`/coins/${id}/market_chart/`, {
-        params: {
-          vs_currency: "usd",
-          days: "365",
-        },
-      }),
-      // we get back the info for that coin
-      coinGecko.get("/coins/markets/", {
-        params: {
-          vs_currency: "usd",
-          ids: id,
-        },
-      }),
+      const [day, week, year, detail] = await Promise.all([
+        coinGecko.get(`/coins/${id}/market_chart/`, {
+          params: {
+            vs_currency: "usd",
+            days: "1"
+          },
+        }),
+        coinGecko.get(`/coins/${id}/market_chart/`, {
+          params: {
+            vs_currency: "usd",
+            days: "7"
+          },
+        }),
+        coinGecko.get(`/coins/${id}/market_chart/`, {
+          params: {
+            vs_currency: "usd",
+            days: "365"
+          },
+        }),
+        coinGecko.get("coins/markets/", {
+          params: {
+            vs_currency: "usd",
+            ids: id
+          }
+        })
       ]);
-
+      //console.log("Results: ", resultsYear);
+      console.log(day);
       setCoinData({
         day: formatData(day.data.prices),
         week: formatData(week.data.prices),
         year: formatData(year.data.prices),
-        detail: detail.data[0],
+        detail: detail.data[0]
+        //before reconstruction of values...
+        //day: resultsDay.data.prices, 
+        //week: resultsWeek.data.prices,
+        //year: resultsYear.data.prices
       });
 
       setIsLoading(false);
-    };
+    }
 
     fetchData();
+
   }, []);
+
+
 
   const renderData = () => {
     // render conditionally

@@ -6,10 +6,12 @@ const HistoryChart = ({ data }) => {
   // to reference Dom elements -> add a useRef 
   const chartRef = useRef();
   // we get these variable from our data
+  // distructured day, week,...etc into data
   const { day, week, year, detail } = data;
   const [timeFormat, setTimeFormat] = useState("24h");
 
-  const determinTimeFormat = () => {
+
+  const determineTimeFormat = () => {
     switch (timeFormat) {
       case "24":
         return day;
@@ -19,7 +21,7 @@ const HistoryChart = ({ data }) => {
         return year;
       default:
         return day;
-    }
+    };
   };
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const HistoryChart = ({ data }) => {
           datasets: [
             {
               label: `${detail.name} price`,
-              data: determinTimeFormat(),
+              data: determineTimeFormat(),
               backgroundColor: "rgba(51, 102, 204, 0.5)",
               borderColor: "rgba(204, 255, 255, 0.4)",
               pointRadius: 0,

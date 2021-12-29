@@ -5,14 +5,23 @@ export const WatchListContext = createContext();
 
 export const WatchListContextProvider = (props) => {
   // localStorage combines all into one string. Here we split it in to an array
-  //console.log(localStorage.getItem("watchlist").split(","));
-  const [watchList, setWatchList] = useState(
-    localStorage.getItem("watchlist")(",") || [
+  //console.log(localStorage.getItem("watchlist").split(",")); 
+
+  // I had to change the useState to ([]) an empty array in order to get it to start...
+  const [watchList, setWatchList] = useState(["bitcoin",
+  "ethereum",
+  "ripple",
+  "ankr"]);
+
+    /*
+     const [watchList, setWatchList] = useState(
+    localStorage.getItem("watchlist").split(",") || [
       "bitcoin",
       "ethereum",
       "ripple",
       "ankr"
     ]);
+    */
 
   // anytime we add or delete a coin, we run this hook
   // we save to local key/value pairs: ex. localStorage.setItem("key", value)
